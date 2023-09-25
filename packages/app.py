@@ -1,4 +1,5 @@
 # Example file showing a circle moving on screen
+import loader
 import pygame
 
 # pygame setup
@@ -7,6 +8,9 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 dt = 0
+
+# pygame music setup
+loader.music('village_vibe.mp3')
 
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 
