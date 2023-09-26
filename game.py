@@ -1,6 +1,7 @@
 # Example file showing a circle moving on screen
-import loader
 import pygame
+
+from packages import loader
 
 # pygame setup
 pygame.init()
@@ -22,7 +23,7 @@ while running:
             running = False
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple")
+    screen.fill("black")
 
     pygame.draw.circle(screen, "red", player_pos, 40)
 
