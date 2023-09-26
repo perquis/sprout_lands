@@ -1,1 +1,2 @@
-from .loader import music
+from .resources import character, music
+from .models import Player
