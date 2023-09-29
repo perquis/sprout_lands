@@ -1,19 +1,22 @@
 from uuid import uuid4
-from pygame import Rect
 from datetime import datetime
 
-from packages import resources
 from packages.enums import Gender, Type
 
 
 class Player:
-    players = 0
+    """
+    Represents a player model in a game.
+    """
+
+    instances = 0
     id: str = uuid4()
 
     def __init__(self, nickname: str, gender: Gender) -> None:
         # private
         self.__days: int = 0
         self.__level: int = 1
+        self.__wallet: float = 0.0
 
         # public
         self.nickname = nickname
@@ -23,7 +26,7 @@ class Player:
         self.created_at = datetime.now()
         self.updated_at = None
 
-        Player.players += 1
+        Player.instances += 1
 
     def __str__(self) -> str:
         pass
@@ -38,14 +41,21 @@ class Player:
         return self.nickname
 
     def add_day(self):
+        """
+        Add one day to days.
+        """
         self.__days += 1
 
     def level_up(self):
+        """
+        Level up a character by adding experience
+        points.
+        """
         self.__level += 1
 
-    @property
-    def rigidbody(self, filename) -> Rect:
-        return resources.character(self.filename)
-
-
-p = Player("perquis", Gender.MALE)
+    def manage_pocket(self, money: float):
+        """
+        This function enables the addition
+        and subtraction of money from a wallet.
+        """
+        self.__wallet += money
