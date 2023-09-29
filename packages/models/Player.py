@@ -34,12 +34,6 @@ class Player:
     def __eq__(self, other: object) -> bool:
         return self.type == other.type
 
-    def get_level(self) -> int:
-        return self.level
-
-    def get_nickname(self) -> str:
-        return self.nickname
-
     def add_day(self):
         """
         Add one day to days.
