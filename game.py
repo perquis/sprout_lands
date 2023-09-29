@@ -4,7 +4,7 @@ from packages import resources
 
 # setup
 pygame.init()
-resources.music('village_vibe.mp3')
+resources.music("village_vibe.mp3")
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
@@ -30,7 +30,7 @@ while running:
     if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
         player_pos.x += 300 * dt
 
-    pygame.display.flip()
+    pygame.display.update()
     dt = clock.tick(60) / 1000
 
 pygame.quit()

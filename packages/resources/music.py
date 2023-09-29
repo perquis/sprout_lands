@@ -5,7 +5,7 @@ from packages.models import router
 
 def music(filename: str):
     """
-    This function load a music from 
+    This function load a music from
     assets/music.
     """
     mixer.init()
