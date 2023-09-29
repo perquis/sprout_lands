@@ -1,8 +1,6 @@
 from uuid import uuid4
-from packages.enums import Gender, Type
-
-
 from packages.models.Player import *
+from packages.enums import Gender, Type
 
 
 class Player(Account, Details, Level, Equipment):

@@ -1,12 +1,11 @@
+from packages import resources, models
 import pygame
 
-from packages import resources
-
-# setup
 pygame.init()
 resources.music("village_vibe.mp3")
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
+device = models.Device()
 running = True
 dt = 0
 
@@ -21,6 +20,7 @@ while running:
     pygame.draw.circle(screen, "red", player_pos, 40)
 
     keys = pygame.key.get_pressed()
+
     if keys[pygame.K_w] or keys[pygame.K_UP]:
         player_pos.y -= 300 * dt
     if keys[pygame.K_s] or keys[pygame.K_DOWN]:
@@ -29,8 +29,10 @@ while running:
         player_pos.x -= 300 * dt
     if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
         player_pos.x += 300 * dt
+    if keys[pygame.K_ESCAPE]:
+        running = False
 
     pygame.display.update()
-    dt = clock.tick(60) / 1000
+    dt = clock.tick(device.get_refresh_rate()) / 1000
 
 pygame.quit()
