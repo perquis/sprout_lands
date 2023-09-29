@@ -26,6 +26,3 @@ class Player(Account, Details, Level, Equipment):
 
     def __eq__(self, other: object) -> bool:
         return self.type == other.type
-
-
-print()
