@@ -30,6 +30,18 @@ class Rigidbody(ABC):
 
         self.is_acceleration = False
 
+    def move_up(self):
+        pass
+
+    def move_down(self):
+        pass
+
+    def move_left(self):
+        pass
+
+    def move_right(self):
+        pass
+
     def toggle_acceleration(self):
         if self.is_acceleration:
             self.is_acceleration = False
