@@ -2,10 +2,15 @@ from packages import resources, models
 import pygame
 
 pygame.init()
-resources.music("village_vibe.mp3")
-screen = pygame.display.set_mode((1280, 720))
+pygame.display.toggle_fullscreen()
+
 clock = pygame.time.Clock()
+infoObject = pygame.display.Info()
+screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
+
+resources.music("village_vibe.mp3")
 device = models.Device()
+
 running = True
 dt = 0
 
