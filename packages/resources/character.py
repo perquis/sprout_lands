@@ -10,4 +10,4 @@ def character(filename: str):
     and return image as rectangle model.
     """
     char_img = image.load(f"{router.characters}/{filename}")
-    return char_img.get_rect()
+    return char_img
