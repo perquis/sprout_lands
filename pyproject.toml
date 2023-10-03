@@ -10,6 +10,8 @@ python = "^3.11"
 pygame = "^2.5.2"
 pywin32 = "^306"
 pylint = "^3.0.0"
+mypy = "^1.5.1"
+types-pywin32 = "^306.0.0.4"
 
 
 [build-system]

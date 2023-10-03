@@ -1,4 +1,4 @@
-from uuid import uuid4
+from uuid import UUID, uuid4
 from packages.models.Player import *
 from packages.enums import *
 
@@ -9,7 +9,7 @@ class Player(Level, Account, Details, Equipment, Rigidbody):
     """
 
     instances = 0
-    id: str = uuid4()
+    id: UUID = uuid4()
 
     def __init__(self, nickname: str, gender: Gender) -> None:
         super(Level, self).__init__()
@@ -23,8 +23,8 @@ class Player(Level, Account, Details, Equipment, Rigidbody):
 
         Player.instances += 1
 
-    def __str__(self) -> str:
+    def __str__(self) -> str:  # type: ignore
         pass
 
     def __eq__(self, other: object) -> bool:
-        return self.type == other.type
+        return self.type == other.type  # type: ignore

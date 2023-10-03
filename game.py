@@ -38,6 +38,6 @@ while running:
     pygame.draw.circle(screen, "red", player_pos, 40)
 
     pygame.display.update()
-    dt = clock.tick(device.get_refresh_rate()) / 1000
+    dt = clock.tick(device.get_refresh_rate()) / 1000  # type: ignore
 
 pygame.quit()
