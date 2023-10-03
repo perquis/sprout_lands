@@ -1,4 +1,5 @@
 from abc import ABC
+
 from packages.enums import Direction
 from packages.utils.images import find_images_by_direction
 

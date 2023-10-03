@@ -1,6 +1,7 @@
 from uuid import UUID, uuid4
-from packages.models.Player import *
+
 from packages.enums import *
+from packages.models.Player import *
 
 
 class Player(Level, Account, Details, Equipment, Rigidbody):

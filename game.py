@@ -1,5 +1,6 @@
-from packages import resources, models
 import pygame
+
+from packages import models, resources
 
 pygame.init()
 
