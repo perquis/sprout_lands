@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.11"
 pygame = "^2.5.2"
 pywin32 = "^306"
+pylint = "^3.0.0"
 
 
 [build-system]
