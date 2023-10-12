@@ -1,5 +1,7 @@
 from uuid import UUID, uuid4
 
+import pygame as pg
+
 from packages.enums import *
 from packages.models.Player import *
 
@@ -13,6 +15,7 @@ class Player(Level, Account, Details, Equipment, Rigidbody):
     id: UUID = uuid4()
 
     def __init__(self, nickname: str, gender: Gender) -> None:
+        pg.sprite.Sprite.__init__(self)
         super(Level, self).__init__()
         super(Account, self).__init__()
         super(Details, self).__init__()
@@ -26,6 +29,3 @@ class Player(Level, Account, Details, Equipment, Rigidbody):
 
     def __str__(self) -> str:  # type: ignore
         pass
-
-    def __eq__(self, other: object) -> bool:
-        return self.type == other.type  # type: ignore
