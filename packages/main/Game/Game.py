@@ -40,13 +40,11 @@ class Game(Settings):
                 self.current_direction = Direction.RIGHT
                 player.player_pos.x += self.speed * self.delta_time
 
-            if self.keys[pygame.K_ESCAPE]:
-                self.exit()
-
             self.screen.fill("black")
-            sprites.draw(self.screen)
+
             # update the player position and animation speed
             sprites.update(player.player_pos, 0.25, self.current_direction)
+            sprites.draw(self.screen)
 
             self.update()
             self.handle_events()

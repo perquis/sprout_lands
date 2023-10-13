@@ -67,6 +67,9 @@ class Settings(ABC):
             self.mouse_visible(True)
             self.toggle_fullscreen()
 
+        if self.event_key == pygame.K_ESCAPE:
+            self.exit()
+
     def mouse_visible(self, visible: bool):
         """Show or hide the mouse."""
         pygame.mouse.set_visible(visible)
