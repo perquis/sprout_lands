@@ -12,9 +12,10 @@ class Rigidbody(ABC, pg.sprite.Sprite):
     the movement of the player.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, pos_x, pos_y) -> None:
         pg.sprite.Sprite.__init__(self)
 
+        self.player_pos = pg.Vector2(pos_x, pos_y)
         self.current_sprite = 0.0
         self.is_move = False
 
@@ -34,6 +35,9 @@ class Rigidbody(ABC, pg.sprite.Sprite):
         self.image = self.__sprites_idle_down[int(self.current_sprite)]
         # return the rectangle object of the image
         self.rect = self.image.get_rect()
+
+    def update_player_pos(self, pos: pg.Vector2) -> None:
+        self.player_pos = pos
 
     def toggle_move(self, is_move: bool) -> None:
         self.is_move = is_move

@@ -32,9 +32,6 @@ class Settings(ABC):
         self.direction_right_keys: List[bool] = []
         self.all_direction_keys: List[bool] = []
 
-        self.player_pos = pygame.Vector2(
-            self.screen.get_width() / 2, self.screen.get_height() / 2)
-
     def update(self):
         """Update the game."""
         self.keys = pygame.key.get_pressed()

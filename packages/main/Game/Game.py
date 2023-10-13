@@ -14,8 +14,11 @@ class Game(Settings):
         self.mouse_visible(False)
         self.load_music("village_vibe.mp3")
 
-        sprites = pygame.sprite.Group()  # type: ignore
-        player = Player("PerQuis", Gender.MALE)
+        pos = pygame.Vector2(self.screen.get_width() / 2,
+                             self.screen.get_height() / 2)
+
+        sprites = pygame.sprite.Group()
+        player = Player("PerQuis", Gender.MALE, pos)
         sprites.add(player)
 
         while self.start:
@@ -26,16 +29,16 @@ class Game(Settings):
 
             if any(self.direction_up_keys):
                 self.current_direction = Direction.UP
-                self.player_pos.y -= self.speed * self.delta_time
+                player.player_pos.y -= self.speed * self.delta_time
             if any(self.direction_down_keys):
                 self.current_direction = Direction.DOWN
-                self.player_pos.y += self.speed * self.delta_time
+                player.player_pos.y += self.speed * self.delta_time
             if any(self.direction_left_keys):
                 self.current_direction = Direction.LEFT
-                self.player_pos.x -= self.speed * self.delta_time
+                player.player_pos.x -= self.speed * self.delta_time
             if any(self.direction_right_keys):
                 self.current_direction = Direction.RIGHT
-                self.player_pos.x += self.speed * self.delta_time
+                player.player_pos.x += self.speed * self.delta_time
 
             if self.keys[pygame.K_ESCAPE]:
                 self.exit()
@@ -43,7 +46,7 @@ class Game(Settings):
             self.screen.fill("black")
             sprites.draw(self.screen)
             # update the player position and animation speed
-            sprites.update(self.player_pos, 0.25, self.current_direction)
+            sprites.update(player.player_pos, 0.25, self.current_direction)
 
             self.update()
             self.handle_events()
