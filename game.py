@@ -11,12 +11,12 @@ pygame.init()
 clock = pygame.time.Clock()
 # current resolution
 infoObject = pygame.display.Info()
-screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
+fullscreen_window = (infoObject.current_w, infoObject.current_h)
+minimalized_window = (infoObject.current_w / 2, infoObject.current_h / 2)
+screen = pygame.display.set_mode(fullscreen_window, pygame.RESIZABLE)
 # this module is responsible for the refresh rate
 device = models.Device()
 
-# toggle fullscreen
-pygame.display.toggle_fullscreen()
 # turn on the music
 resources.music("village_vibe.mp3")
 
@@ -44,6 +44,9 @@ while running:
         # close the window by clicking the X button
         if event.type == pygame.QUIT:
             running = False
+
+        if event.type == pygame.KEYUP and event.key == pygame.K_F11:
+            pygame.display.toggle_fullscreen()
 
     # get the pressed key
     keys = pygame.key.get_pressed()
