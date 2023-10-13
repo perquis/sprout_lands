@@ -23,7 +23,7 @@ resources.music("village_vibe.mp3")
 # return the current position of the mouse
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 running = True
-dt: float = 0
+dt = 0.0
 
 # disable the mouse cursor
 pygame.mouse.set_visible(False)
@@ -71,9 +71,9 @@ while running:
     if keys[pygame.K_ESCAPE]:
         running = False
 
-    # draw the player
     screen.fill("black")
     sprites.draw(screen)
+    # update the player position and animation speed
     sprites.update(player_pos, 0.25, current_direction)
 
     pygame.display.update()
