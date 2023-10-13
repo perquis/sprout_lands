@@ -8,6 +8,8 @@ from packages.enums import Direction
 
 
 class Settings(ABC):
+    """🔧 The game settings. 🔧"""
+
     def __init__(self) -> None:
         pygame.init()
 
@@ -17,11 +19,14 @@ class Settings(ABC):
         self.start = True
         self.clock = pygame.time.Clock()
         self.keys = pygame.key.get_pressed()
+
         self.event_type = None
         self.event_key = None
+
         self.display = resolution.current_w, resolution.current_h
         self.screen = pygame.display.set_mode(self.display, pygame.RESIZABLE)
         self.refresh_rate = device.get_refresh_rate()
+
         self.current_direction = Direction.DOWN
         self.delta_time = 0.0
         self.speed = 225

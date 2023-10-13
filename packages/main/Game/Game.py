@@ -6,10 +6,13 @@ from packages.models import Player
 
 
 class Game(Settings):
+    """🎮 The game. 🎮"""
+
     def __init__(self) -> None:
         super().__init__()
 
     def run(self):
+        """Run the game."""
         self.toggle_fullscreen()
         self.mouse_visible(False)
         self.load_music("village_vibe.mp3")
