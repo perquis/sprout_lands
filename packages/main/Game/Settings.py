@@ -4,7 +4,6 @@ from typing import List
 import pygame
 
 from packages import models, resources
-from packages.enums import Direction
 
 
 class Settings(ABC):
@@ -27,7 +26,6 @@ class Settings(ABC):
         self.screen = pygame.display.set_mode(self.display, pygame.RESIZABLE)
         self.refresh_rate = device.get_refresh_rate()
 
-        self.current_direction = Direction.DOWN
         self.delta_time = 0.0
         self.speed = 225
 
@@ -69,7 +67,7 @@ class Settings(ABC):
             self.exit()
 
         if self.event_type == pygame.KEYUP and self.event_key == pygame.K_F11:
-            self.mouse_visible(True)
+            self.mouse_visible(self.is_fullscreen)
             self.toggle_fullscreen()
 
         if self.event_key == pygame.K_ESCAPE:
@@ -82,6 +80,10 @@ class Settings(ABC):
     def load_music(self, music: str):
         """Load the music."""
         resources.music("village_vibe.mp3")
+
+    @property
+    def is_fullscreen(self) -> bool:
+        return pygame.display.is_fullscreen()
 
     def toggle_fullscreen(self):
         """Toggle fullscreen mode."""

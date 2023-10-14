@@ -15,6 +15,7 @@ class Rigidbody(ABC, pg.sprite.Sprite):
     def __init__(self, pos_x, pos_y) -> None:
         pg.sprite.Sprite.__init__(self)
 
+        self.current_direction = Direction.DOWN
         self.player_pos = pg.Vector2(pos_x, pos_y)
         self.current_sprite = 0.0
         self.is_move = False
@@ -42,26 +43,26 @@ class Rigidbody(ABC, pg.sprite.Sprite):
     def toggle_move(self, is_move: bool) -> None:
         self.is_move = is_move
 
-    def update(self, pos: pg.Vector2, speed: float, direction: Direction) -> None:
+    def update(self, pos: pg.Vector2, speed: float) -> None:
         self.rect.center = pos
         self.current_sprite += speed * 0.1
 
         if self.current_sprite >= len(self.__sprites_idle_down):
             self.current_sprite = 0.0
 
-        if direction == Direction.UP and not self.is_move:
+        if self.current_direction == Direction.UP and not self.is_move:
             self.image = self.__sprites_idle_up[int(self.current_sprite)]
-        elif direction == Direction.DOWN and not self.is_move:
+        elif self.current_direction == Direction.DOWN and not self.is_move:
             self.image = self.__sprites_idle_down[int(self.current_sprite)]
-        elif direction == Direction.LEFT and not self.is_move:
+        elif self.current_direction == Direction.LEFT and not self.is_move:
             self.image = self.__sprites_idle_left[int(self.current_sprite)]
-        elif direction == Direction.RIGHT and not self.is_move:
+        elif self.current_direction == Direction.RIGHT and not self.is_move:
             self.image = self.__sprites_idle_right[int(self.current_sprite)]
-        elif direction == Direction.UP and self.is_move:
+        elif self.current_direction == Direction.UP and self.is_move:
             self.image = self.__sprites_move_up[int(self.current_sprite)]
-        elif direction == Direction.DOWN and self.is_move:
+        elif self.current_direction == Direction.DOWN and self.is_move:
             self.image = self.__sprites_move_down[int(self.current_sprite)]
-        elif direction == Direction.LEFT and self.is_move:
+        elif self.current_direction == Direction.LEFT and self.is_move:
             self.image = self.__sprites_move_left[int(self.current_sprite)]
-        elif direction == Direction.RIGHT and self.is_move:
+        elif self.current_direction == Direction.RIGHT and self.is_move:
             self.image = self.__sprites_move_right[int(self.current_sprite)]

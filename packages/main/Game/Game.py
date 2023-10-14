@@ -30,23 +30,25 @@ class Game(Settings):
             else:
                 player.toggle_move(False)
 
+            diff = self.speed * self.delta_time
+
             if any(self.direction_up_keys):
-                self.current_direction = Direction.UP
-                player.player_pos.y -= self.speed * self.delta_time
+                player.current_direction = Direction.UP
+                player.player_pos.y -= diff
             if any(self.direction_down_keys):
-                self.current_direction = Direction.DOWN
-                player.player_pos.y += self.speed * self.delta_time
+                player.current_direction = Direction.DOWN
+                player.player_pos.y += diff
             if any(self.direction_left_keys):
-                self.current_direction = Direction.LEFT
-                player.player_pos.x -= self.speed * self.delta_time
+                player.current_direction = Direction.LEFT
+                player.player_pos.x -= diff
             if any(self.direction_right_keys):
-                self.current_direction = Direction.RIGHT
-                player.player_pos.x += self.speed * self.delta_time
+                player.current_direction = Direction.RIGHT
+                player.player_pos.x += diff
 
             self.screen.fill("black")
 
             # update the player position and animation speed
-            sprites.update(player.player_pos, 0.25, self.current_direction)
+            sprites.update(player.player_pos, 0.25)
             sprites.draw(self.screen)
 
             self.update()
