@@ -13,12 +13,12 @@ class Player(Level, Account, Details, Equipment, Rigidbody):
 
     id: UUID = uuid4()
 
-    def __init__(self, nickname: str, pos: pg.Vector2, speed: float) -> None:
+    def __init__(self, nickname: str, speed: float) -> None:
         pg.sprite.Sprite.__init__(self)
         super(Level, self).__init__()
         super(Account, self).__init__()
         super(Details, self).__init__()
-        super(Equipment, self).__init__(pos_x=pos.x, pos_y=pos.y, speed=speed)
+        super(Equipment, self).__init__(speed=speed)
         super(Rigidbody, self).__init__()
         self.nickname = nickname
         self.type = Type.Player

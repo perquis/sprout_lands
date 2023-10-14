@@ -1,5 +1,6 @@
 import os
 
+import pygame
 import win32api
 
 
@@ -18,3 +19,7 @@ class Device:
             return to_float_result
 
         return 60.0
+
+    def get_display(self):
+        resolution = pygame.display.Info()
+        return resolution.current_w, resolution.current_h

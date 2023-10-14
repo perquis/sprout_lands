@@ -10,22 +10,26 @@ class API(ABC):
 
     def __init__(self) -> None:
         pygame.init()
+        self.clock = pygame.time.Clock()
 
-        device = models.Device()
-        resolution = pygame.display.Info()
+        # initialize the device
 
         self.start = True
-        self.clock = pygame.time.Clock()
 
         self.event_type = None
         self.event_key = None
 
-        self.display = resolution.current_w, resolution.current_h
-        self.screen = pygame.display.set_mode(self.display, pygame.RESIZABLE)
-        self.refresh_rate = device.get_refresh_rate()
-
         self.delta_time = 0.0
         self.game_speed = 225
+
+        # initialize the display
+        device = models.Device()
+        # get the display size
+        self.display = device.get_display()
+        # set the screen size to the display size and make it resizable
+        self.screen = pygame.display.set_mode(self.display, pygame.RESIZABLE)
+        # set default refresh rate belong to the device
+        self.refresh_rate = device.get_refresh_rate()
 
     @property
     def is_fullscreen(self) -> bool:

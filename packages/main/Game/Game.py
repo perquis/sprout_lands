@@ -16,10 +16,7 @@ class Game(API):
         self.mouse_visible(False)
         self.load_music("village_vibe.mp3")
 
-        pos = pg.Vector2(self.screen.get_width() / 2,
-                         self.screen.get_height() / 2)
-
-        new_player = Player("PerQuis", pos, 0.25)
+        new_player = Player("PerQuis", speed=0.25)
 
         sprites = pg.sprite.Group()
         sprites.add(new_player)
