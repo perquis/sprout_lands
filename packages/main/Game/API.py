@@ -9,16 +9,12 @@ class API(ABC):
     """The API for the game."""
 
     def __init__(self) -> None:
-        pygame.init()
         self.clock = pygame.time.Clock()
 
-        # initialize the device
-
+        # initialize core properties of the game
         self.start = True
-
         self.event_type = None
         self.event_key = None
-
         self.delta_time = 0.0
         self.game_speed = 225
 
@@ -42,7 +38,12 @@ class API(ABC):
         return self.game_speed * self.delta_time
 
     def update(self):
-        """Update the game."""
+        """
+        Update the game:
+        - get the events
+        - update the delta time and clock tick rate
+        - update the display
+        """
         for event in pygame.event.get():
             self.event_type = event.type
 
@@ -55,7 +56,13 @@ class API(ABC):
         pygame.display.update()
 
     def handle_events(self):
-        """Handle the events."""
+        """
+        Handle the events:
+
+        - exit the game if the user clicks the close button
+        - toggle fullscreen mode if the user presses the F11 key
+        - exit the game if the user presses the ESC key
+        """
         if self.event_type == pygame.QUIT:
             self.exit()
 

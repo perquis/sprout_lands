@@ -20,6 +20,7 @@ class Rigidbody(ABC, pg.sprite.Sprite):
 
         x, y = device.get_display()
 
+        # return default properties of the player
         self.current_direction = Direction.DOWN
         self.player_pos = pg.Vector2(x / 2, y / 2)
         self.current_sprite = 0.0
@@ -51,6 +52,11 @@ class Rigidbody(ABC, pg.sprite.Sprite):
         self.rect = self.image.get_rect()
 
     def update(self, diff: float) -> None:
+        """
+        Update the player:
+        - handle the animation of the player based on the current sprite and direction
+        - handle the movement of the player based on the pressed keys
+        """
         self.animation()
         self.movement(diff)
 
