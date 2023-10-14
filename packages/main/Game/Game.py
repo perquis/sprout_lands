@@ -1,4 +1,4 @@
-import pygame
+import pygame as pg
 
 from packages.enums import Direction, Gender
 from packages.main.Game.Settings import Settings
@@ -17,10 +17,10 @@ class Game(Settings):
         self.mouse_visible(False)
         self.load_music("village_vibe.mp3")
 
-        pos = pygame.Vector2(self.screen.get_width() / 2,
-                             self.screen.get_height() / 2)
+        pos = pg.Vector2(self.screen.get_width() / 2,
+                         self.screen.get_height() / 2)
 
-        sprites = pygame.sprite.Group()
+        sprites = pg.sprite.Group()
         player = Player("PerQuis", Gender.MALE, pos)
         sprites.add(player)
 
@@ -55,4 +55,4 @@ class Game(Settings):
             self.handle_events()
             self.screen.fill("black")
 
-        pygame.quit()
+        pg.quit()

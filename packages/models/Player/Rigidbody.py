@@ -37,9 +37,6 @@ class Rigidbody(ABC, pg.sprite.Sprite):
         # return the rectangle object of the image
         self.rect = self.image.get_rect()
 
-    def update_player_pos(self, pos: pg.Vector2) -> None:
-        self.player_pos = pos
-
     def toggle_move(self, is_move: bool) -> None:
         self.is_move = is_move
 

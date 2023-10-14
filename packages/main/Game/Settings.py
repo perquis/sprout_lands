@@ -35,6 +35,11 @@ class Settings(ABC):
         self.direction_right_keys: List[bool] = []
         self.all_direction_keys: List[bool] = []
 
+    @property
+    def is_fullscreen(self) -> bool:
+        """Return True if the game is in fullscreen mode, False otherwise."""
+        return pygame.display.is_fullscreen()
+
     def update(self):
         """Update the game."""
         self.keys = pygame.key.get_pressed()
@@ -80,10 +85,6 @@ class Settings(ABC):
     def load_music(self, music: str):
         """Load the music."""
         resources.music("village_vibe.mp3")
-
-    @property
-    def is_fullscreen(self) -> bool:
-        return pygame.display.is_fullscreen()
 
     def toggle_fullscreen(self):
         """Toggle fullscreen mode."""
