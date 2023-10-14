@@ -43,8 +43,8 @@ class Rigidbody(ABC, pg.sprite.Sprite):
     def toggle_move(self, is_move: bool) -> None:
         self.is_move = is_move
 
-    def update(self, pos: pg.Vector2, speed: float) -> None:
-        self.rect.center = pos
+    def update(self, speed: float) -> None:
+        self.rect.center = self.player_pos
         self.current_sprite += speed * 0.1
 
         if self.current_sprite >= len(self.__sprites_idle_down):

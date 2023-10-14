@@ -25,13 +25,9 @@ class Game(Settings):
         sprites.add(player)
 
         while self.start:
-            if any(self.all_direction_keys):
-                player.toggle_move(True)
-            else:
-                player.toggle_move(False)
-
             diff = self.speed * self.delta_time
 
+            # handle the player idle animation
             if any(self.direction_up_keys):
                 player.current_direction = Direction.UP
                 player.player_pos.y -= diff
@@ -45,13 +41,18 @@ class Game(Settings):
                 player.current_direction = Direction.RIGHT
                 player.player_pos.x += diff
 
-            self.screen.fill("black")
+            # handle the player movement animation
+            if any(self.all_direction_keys):
+                player.toggle_move(True)
+            else:
+                player.toggle_move(False)
 
             # update the player position and animation speed
-            sprites.update(player.player_pos, 0.25)
+            sprites.update(speed=0.25)
             sprites.draw(self.screen)
 
             self.update()
             self.handle_events()
+            self.screen.fill("black")
 
         pygame.quit()
