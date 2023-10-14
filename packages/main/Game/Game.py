@@ -13,10 +13,12 @@ class Game(API):
 
     def run(self):
         """Run the game."""
+        # load default settings of the game
         self.toggle_fullscreen()
         self.mouse_visible(False)
         self.load_music("village_vibe.mp3")
 
+        # create the player group and add the player to it
         players_group = pg.sprite.Group()
         players_group.add(self.player)
 
