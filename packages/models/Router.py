@@ -8,6 +8,3 @@ root: str = "assets"
 class Router:
     music: str = f"{root}/music"
     characters: str = f"{root}/sprites_basic_pack/Characters"
-
-
-router = Router()

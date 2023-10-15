@@ -1,6 +1,8 @@
 from pygame import image
 
-from packages.models import router
+from packages.models import Router
+
+router = Router()
 
 
 def character(filename: str):

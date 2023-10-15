@@ -1,6 +1,8 @@
 from pygame import mixer
 
-from packages.models import router
+from packages.models import Router
+
+router = Router()
 
 
 def music(filename: str):
