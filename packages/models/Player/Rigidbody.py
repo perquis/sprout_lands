@@ -27,16 +27,24 @@ class Rigidbody(ABC, pg.sprite.Sprite):
         self.__current_direction = Direction.DOWN
         self.__player_pos = pg.Vector2(x / 2, y / 2)
         self.__current_sprite = 0.0
-        self.__is_move = False
         self.__speed = speed
 
-        # return a list of images by direction (up, down, left, right) based on idleness
+        # return the state of the player
+        # based on the action he is performing
+        self.__is_move = False
+        self.__is_chop_tree = False
+        self.__is_plow_field = False
+        self.__is_water_plants = False
+
+        # return a list of images by direction
+        # (up, down, left, right) based on idleness
         self.__sprites_idle_up = fibd(self.__filename, Direction.UP)
         self.__sprites_idle_down = fibd(self.__filename, Direction.DOWN)
         self.__sprites_idle_left = fibd(self.__filename, Direction.LEFT)
         self.__sprites_idle_right = fibd(self.__filename, Direction.RIGHT)
 
-        # return a list of images by direction (up, down, left, right) based on movement
+        # return a list of images by direction
+        # (up, down, left, right) based on movement
         self.__sprites_move_up = fibd(
             self.__filename, Direction.UP, range(3, 5))
         self.__sprites_move_down = fibd(
@@ -46,7 +54,8 @@ class Rigidbody(ABC, pg.sprite.Sprite):
         self.__sprites_move_right = fibd(
             self.__filename, Direction.RIGHT, range(3, 5))
 
-        # return a list of keys that are responsible for the movement of the player
+        # return a list of keys that are responsible
+        # for the movement of the player
         self.__direction_up_keys: List[bool] = []
         self.__direction_down_keys: List[bool] = []
         self.__direction_left_keys: List[bool] = []
@@ -67,16 +76,18 @@ class Rigidbody(ABC, pg.sprite.Sprite):
         self.animation()
         self.movement(diff)
 
-    def animation(self):
+    def animation(self) -> None:
         """Handles the animation of the player based on the current sprite."""
         self.rect.center = self.__player_pos
         self.__current_sprite += self.__speed * 0.1
 
-        # reset the animation if the current sprite is greater than the length of the list
+        # reset the animation if the current sprite
+        # is greater than the length of the list
         if self.__current_sprite >= len(self.__sprites_idle_down):
             self.__current_sprite = 0.0
 
-        # handle the player animation based on the direction and movement or idleness
+        # handle the player animation based on
+        # the direction and movement or idleness
         if self.__current_direction == Direction.UP and not self.__is_move:
             self.image = self.__sprites_idle_up[int(self.__current_sprite)]
         elif self.__current_direction == Direction.DOWN and not self.__is_move:
@@ -143,3 +154,12 @@ class Rigidbody(ABC, pg.sprite.Sprite):
 
     def toggle_move(self, is_move: bool) -> None:
         self.__is_move = is_move
+
+    def water_platns(self, is_water_plants: bool) -> None:
+        self.__is_water_plants = is_water_plants
+
+    def chop_tree(self, is_chop_tree: bool) -> None:
+        self.__is_chop_tree = is_chop_tree
+
+    def plow_field(self, is_plow_field: bool) -> None:
+        self.__is_plow_field = is_plow_field
