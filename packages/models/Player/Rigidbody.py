@@ -79,9 +79,9 @@ class Rigidbody(ABC, pg.sprite.Sprite):
     def plow_field(self, is_plow_field: bool) -> None:
         self.__is_plow_field = is_plow_field
 
-    def set_current_image(self, image) -> None:
+    def set_current_image(self, movement, idleness) -> None:
         """Set the current image of the player."""
-        self.image = image
+        self.image = movement if self.__is_move else idleness
 
     def update(self, diff: float) -> None:
         """
@@ -106,28 +106,29 @@ class Rigidbody(ABC, pg.sprite.Sprite):
 
         # handle the player animation based on
         # the direction and movement or idleness
-        index = int(self.__current_sprite)
+        n = int(self.__current_sprite)
 
-        if self.__is_move:
-            match self.__current_direction:
-                case Direction.UP:
-                    self.set_current_image(self.__sprites_move_up[index])
-                case Direction.DOWN:
-                    self.set_current_image(self.__sprites_move_down[index])
-                case Direction.LEFT:
-                    self.set_current_image(self.__sprites_move_left[index])
-                case Direction.RIGHT:
-                    self.set_current_image(self.__sprites_move_right[index])
-        else:
-            match self.__current_direction:
-                case Direction.UP:
-                    self.set_current_image(self.__sprites_idle_up[index])
-                case Direction.DOWN:
-                    self.set_current_image(self.__sprites_idle_down[index])
-                case Direction.LEFT:
-                    self.set_current_image(self.__sprites_idle_left[index])
-                case Direction.RIGHT:
-                    self.set_current_image(self.__sprites_idle_right[index])
+        match self.__current_direction:
+            case Direction.UP:
+                self.set_current_image(
+                    self.__sprites_move_up[n],
+                    self.__sprites_idle_up[n]
+                )
+            case Direction.DOWN:
+                self.set_current_image(
+                    self.__sprites_move_down[n],
+                    self.__sprites_idle_down[n]
+                )
+            case Direction.LEFT:
+                self.set_current_image(
+                    self.__sprites_move_left[n],
+                    self.__sprites_idle_left[n]
+                )
+            case Direction.RIGHT:
+                self.set_current_image(
+                    self.__sprites_move_right[n],
+                    self.__sprites_idle_right[n]
+                )
 
     def movement(self, diff: float) -> None:
         """Handles the movement of the player."""
