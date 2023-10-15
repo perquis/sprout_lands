@@ -18,7 +18,8 @@ class API(ABC):
         self.delta_time = 0.0
         self.game_speed = 225
 
-        # set the display and the refresh rate of the game
+        # set the display and the refresh rate
+        # of the game
         device = models.Device()
         self.display = device.get_display()
         self.screen = pygame.display.set_mode(self.display, pygame.RESIZABLE)
@@ -26,7 +27,10 @@ class API(ABC):
 
     @property
     def is_fullscreen(self) -> bool:
-        """Return True if the game is in fullscreen mode, False otherwise."""
+        """
+        Return True if the game is in 
+        fullscreen mode, False otherwise.
+        """
         return pygame.display.is_fullscreen()
 
     @property
@@ -37,6 +41,7 @@ class API(ABC):
     def update(self):
         """
         Update the game:
+
         - get the events
         - update the delta time and clock tick rate
         - update the display
@@ -47,7 +52,9 @@ class API(ABC):
             if event.type == pygame.KEYUP:
                 self.event_key = event.key
 
-        # update the delta time and clock tick rate to keep the game running at the same speed on all devices
+        # update the delta time and clock tick rate
+        # to keep the game running at the same speed
+        # on all devices
         self.delta_time = self.clock.tick(self.refresh_rate) / 1000
 
         pygame.display.update()
