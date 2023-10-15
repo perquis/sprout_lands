@@ -1,6 +1,6 @@
 from abc import ABC
 
-import pygame
+import pygame as pg
 
 from packages import models, resources
 
@@ -9,7 +9,7 @@ class API(ABC):
     """The API for the game."""
 
     def __init__(self) -> None:
-        self.clock = pygame.time.Clock()
+        self.clock = pg.time.Clock()
 
         # initialize core properties of the game
         self.start = True
@@ -22,8 +22,19 @@ class API(ABC):
         # of the game
         device = models.Device()
         self.display = device.get_display()
-        self.screen = pygame.display.set_mode(self.display, pygame.RESIZABLE)
+        self.screen = pg.display.set_mode(self.display, pg.RESIZABLE)
         self.refresh_rate = device.get_refresh_rate()
+
+        # set the icon and the caption of the game
+        pg.display.set_icon(self.icon)
+        pg.display.set_caption("Sprout Lands")
+
+    @property
+    def icon(self):
+        """Return the icon of the game."""
+        return resources.character(
+            "Basic Charakter Spritesheet/Basic_Charakter_Spritesheet_DOWN_1.png"
+        )
 
     @property
     def is_fullscreen(self) -> bool:
@@ -31,7 +42,7 @@ class API(ABC):
         Return True if the game is in 
         fullscreen mode, False otherwise.
         """
-        return pygame.display.is_fullscreen()
+        return pg.display.is_fullscreen()
 
     @property
     def diff(self):
@@ -46,10 +57,10 @@ class API(ABC):
         - update the delta time and clock tick rate
         - update the display
         """
-        for event in pygame.event.get():
+        for event in pg.event.get():
             self.event_type = event.type
 
-            if event.type == pygame.KEYUP:
+            if event.type == pg.KEYUP:
                 self.event_key = event.key
 
         # update the delta time and clock tick rate
@@ -57,7 +68,7 @@ class API(ABC):
         # on all devices
         self.delta_time = self.clock.tick(self.refresh_rate) / 1000
 
-        pygame.display.update()
+        pg.display.update()
 
     def handle_events(self):
         """
@@ -67,19 +78,19 @@ class API(ABC):
         - toggle fullscreen mode if the user presses the F11 key
         - exit the game if the user presses the ESC key
         """
-        if self.event_type == pygame.QUIT:
+        if self.event_type == pg.QUIT:
             self.exit()
 
-        if self.event_type == pygame.KEYUP and self.event_key == pygame.K_F11:
+        if self.event_type == pg.KEYUP and self.event_key == pg.K_F11:
             self.mouse_visible(self.is_fullscreen)
             self.toggle_fullscreen()
 
-        if self.event_key == pygame.K_ESCAPE:
+        if self.event_key == pg.K_ESCAPE:
             self.exit()
 
     def mouse_visible(self, visible: bool):
         """Show or hide the mouse."""
-        pygame.mouse.set_visible(visible)
+        pg.mouse.set_visible(visible)
 
     def load_music(self, music: str):
         """Load the music."""
@@ -87,7 +98,7 @@ class API(ABC):
 
     def toggle_fullscreen(self):
         """Toggle fullscreen mode."""
-        pygame.display.toggle_fullscreen()
+        pg.display.toggle_fullscreen()
 
     def exit(self):
         """Exit the game."""
