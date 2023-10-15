@@ -67,6 +67,22 @@ class Rigidbody(ABC, pg.sprite.Sprite):
         # return the rectangle object of the image
         self.rect = self.image.get_rect()
 
+    def toggle_move(self, is_move: bool) -> None:
+        self.__is_move = is_move
+
+    def water_platns(self, is_water_plants: bool) -> None:
+        self.__is_water_plants = is_water_plants
+
+    def chop_tree(self, is_chop_tree: bool) -> None:
+        self.__is_chop_tree = is_chop_tree
+
+    def plow_field(self, is_plow_field: bool) -> None:
+        self.__is_plow_field = is_plow_field
+
+    def set_current_image(self, image) -> None:
+        """Set the current image of the player."""
+        self.image = image
+
     def update(self, diff: float) -> None:
         """
         Update the player:
@@ -95,23 +111,23 @@ class Rigidbody(ABC, pg.sprite.Sprite):
         if self.__is_move:
             match self.__current_direction:
                 case Direction.UP:
-                    self.image = self.__sprites_move_up[index]
+                    self.set_current_image(self.__sprites_move_up[index])
                 case Direction.DOWN:
-                    self.image = self.__sprites_move_down[index]
+                    self.set_current_image(self.__sprites_move_down[index])
                 case Direction.LEFT:
-                    self.image = self.__sprites_move_left[index]
+                    self.set_current_image(self.__sprites_move_left[index])
                 case Direction.RIGHT:
-                    self.image = self.__sprites_move_right[index]
+                    self.set_current_image(self.__sprites_move_right[index])
         else:
             match self.__current_direction:
                 case Direction.UP:
-                    self.image = self.__sprites_idle_up[index]
+                    self.set_current_image(self.__sprites_idle_up[index])
                 case Direction.DOWN:
-                    self.image = self.__sprites_idle_down[index]
+                    self.set_current_image(self.__sprites_idle_down[index])
                 case Direction.LEFT:
-                    self.image = self.__sprites_idle_left[index]
+                    self.set_current_image(self.__sprites_idle_left[index])
                 case Direction.RIGHT:
-                    self.image = self.__sprites_idle_right[index]
+                    self.set_current_image(self.__sprites_idle_right[index])
 
     def movement(self, diff: float) -> None:
         """Handles the movement of the player."""
@@ -134,18 +150,6 @@ class Rigidbody(ABC, pg.sprite.Sprite):
             self.toggle_move(True)
         else:
             self.toggle_move(False)
-
-    def toggle_move(self, is_move: bool) -> None:
-        self.__is_move = is_move
-
-    def water_platns(self, is_water_plants: bool) -> None:
-        self.__is_water_plants = is_water_plants
-
-    def chop_tree(self, is_chop_tree: bool) -> None:
-        self.__is_chop_tree = is_chop_tree
-
-    def plow_field(self, is_plow_field: bool) -> None:
-        self.__is_plow_field = is_plow_field
 
     def get_pressed_keys(self):
         """Handle the pressed keys of the player."""
