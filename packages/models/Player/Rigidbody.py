@@ -72,9 +72,11 @@ class Rigidbody(ABC, pg.sprite.Sprite):
         Update the player:
         - handle the animation of the player based on the current sprite and direction
         - handle the movement of the player based on the pressed keys
+        - handle the pressed keys of the player based on the pressed keys
         """
         self.animation()
         self.movement(diff)
+        self.get_pressed_keys()
 
     def animation(self) -> None:
         """Handles the animation of the player based on the current sprite."""
@@ -88,50 +90,31 @@ class Rigidbody(ABC, pg.sprite.Sprite):
 
         # handle the player animation based on
         # the direction and movement or idleness
-        if self.__current_direction == Direction.UP and not self.__is_move:
-            self.image = self.__sprites_idle_up[int(self.__current_sprite)]
-        elif self.__current_direction == Direction.DOWN and not self.__is_move:
-            self.image = self.__sprites_idle_down[int(self.__current_sprite)]
-        elif self.__current_direction == Direction.LEFT and not self.__is_move:
-            self.image = self.__sprites_idle_left[int(self.__current_sprite)]
-        elif self.__current_direction == Direction.RIGHT and not self.__is_move:
-            self.image = self.__sprites_idle_right[int(self.__current_sprite)]
-        elif self.__current_direction == Direction.UP and self.__is_move:
-            self.image = self.__sprites_move_up[int(self.__current_sprite)]
-        elif self.__current_direction == Direction.DOWN and self.__is_move:
-            self.image = self.__sprites_move_down[int(self.__current_sprite)]
-        elif self.__current_direction == Direction.LEFT and self.__is_move:
-            self.image = self.__sprites_move_left[int(self.__current_sprite)]
-        elif self.__current_direction == Direction.RIGHT and self.__is_move:
-            self.image = self.__sprites_move_right[int(self.__current_sprite)]
+        index = int(self.__current_sprite)
+
+        if self.__is_move:
+            match self.__current_direction:
+                case Direction.UP:
+                    self.image = self.__sprites_move_up[index]
+                case Direction.DOWN:
+                    self.image = self.__sprites_move_down[index]
+                case Direction.LEFT:
+                    self.image = self.__sprites_move_left[index]
+                case Direction.RIGHT:
+                    self.image = self.__sprites_move_right[index]
+        else:
+            match self.__current_direction:
+                case Direction.UP:
+                    self.image = self.__sprites_idle_up[index]
+                case Direction.DOWN:
+                    self.image = self.__sprites_idle_down[index]
+                case Direction.LEFT:
+                    self.image = self.__sprites_idle_left[index]
+                case Direction.RIGHT:
+                    self.image = self.__sprites_idle_right[index]
 
     def movement(self, diff: float) -> None:
         """Handles the movement of the player."""
-        keys = pg.key.get_pressed()
-
-        self.__direction_up_keys = [
-            keys[pg.K_w],
-            keys[pg.K_UP]
-        ]
-        self.__direction_down_keys = [
-            keys[pg.K_s],
-            keys[pg.K_DOWN]
-        ]
-        self.__direction_left_keys = [
-            keys[pg.K_a],
-            keys[pg.K_LEFT]
-        ]
-        self.__direction_right_keys = [
-            keys[pg.K_d],
-            keys[pg.K_RIGHT]
-        ]
-        self.__all_direction_keys = [
-            *self.__direction_up_keys,
-            *self.__direction_down_keys,
-            *self.__direction_left_keys,
-            *self.__direction_right_keys
-        ]
-
         # handle the player idle animation
         if any(self.__direction_up_keys):
             self.__current_direction = Direction.UP
@@ -163,3 +146,30 @@ class Rigidbody(ABC, pg.sprite.Sprite):
 
     def plow_field(self, is_plow_field: bool) -> None:
         self.__is_plow_field = is_plow_field
+
+    def get_pressed_keys(self):
+        """Handle the pressed keys of the player."""
+        keys = pg.key.get_pressed()
+
+        self.__direction_up_keys = [
+            keys[pg.K_w],
+            keys[pg.K_UP]
+        ]
+        self.__direction_down_keys = [
+            keys[pg.K_s],
+            keys[pg.K_DOWN]
+        ]
+        self.__direction_left_keys = [
+            keys[pg.K_a],
+            keys[pg.K_LEFT]
+        ]
+        self.__direction_right_keys = [
+            keys[pg.K_d],
+            keys[pg.K_RIGHT]
+        ]
+        self.__all_direction_keys = [
+            *self.__direction_up_keys,
+            *self.__direction_down_keys,
+            *self.__direction_left_keys,
+            *self.__direction_right_keys
+        ]
