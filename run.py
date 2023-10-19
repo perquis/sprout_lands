@@ -7,7 +7,7 @@ if __name__ == '__main__':
     pg.init()
 
     # create the player and the game
-    player = Player("PerQuis", speed=0.25)
+    player = Player("PerQuis", speed=0.5)
     game = Game(player)
 
     # run the game
