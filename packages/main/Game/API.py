@@ -1,3 +1,4 @@
+import sys
 from abc import ABC
 
 import pygame as pg
@@ -87,6 +88,7 @@ class API(ABC):
 
         if self.event_key == pg.K_ESCAPE:
             self.exit()
+            sys.exit()
 
     def mouse_visible(self, visible: bool):
         """Show or hide the mouse."""
@@ -103,3 +105,4 @@ class API(ABC):
     def exit(self):
         """Exit the game."""
         self.start = False
+        sys.exit()
