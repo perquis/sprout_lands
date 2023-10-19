@@ -66,6 +66,10 @@ class API(ABC):
         # update the delta time and clock tick rate
         # to keep the game running at the same speed
         # on all devices
+
+        # implement calculation for delta time
+        # to reduce the speed of the game for
+        # the players with a slow computer
         self.delta_time = self.clock.tick(self.refresh_rate) / 1000
 
         pg.display.update()

@@ -9,10 +9,14 @@ readme = "README.md"
 python = "^3.11"
 pygame = "^2.5.2"
 pywin32 = "^306"
-pylint = "^3.0.0"
-mypy = "^1.5.1"
 types-pywin32 = "^306.0.0.4"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.2"
+mypy = "^1.6.1"
+pylint = "^3.0.1"
+pre-commit = "^3.5.0"
 
 [build-system]
 requires = ["poetry-core"]
