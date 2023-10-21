@@ -1,22 +1,23 @@
 from abc import ABC
 from typing import List
 
-import pygame as pg
+from pygame import *
+from pygame.sprite import Sprite
 
 from packages.enums import Direction
 from packages.utils.images import find_images_by_direction as fibd
 
 
-class Rigidbody(ABC, pg.sprite.Sprite):
+class Rigidbody(ABC, Sprite):
     """
     Rigidbody is a class that is responsible for
     the movement of the player.
     """
 
     def __init__(self, speed: float) -> None:
-        pg.sprite.Sprite.__init__(self)
+        Sprite.__init__(self)
 
-        x, y = pg.display.get_window_size()
+        x, y = display.get_window_size()
 
         # return the path to the spritesheet
         keywords = ["Basic", "Charakter", "Spritesheet"]
@@ -27,7 +28,7 @@ class Rigidbody(ABC, pg.sprite.Sprite):
 
         # return default properties of the player
         self.__current_direction = Direction.DOWN
-        self.__player_pos = pg.Vector2(x / 2, y / 2)
+        self.__player_pos = Vector2(x / 2, y / 2)
         self.__current_sprite = 0.0
         self.__speed = speed
 
@@ -156,23 +157,23 @@ class Rigidbody(ABC, pg.sprite.Sprite):
 
     def get_pressed_keys(self):
         """Handle the pressed keys of the player."""
-        keys = pg.key.get_pressed()
+        keys = key.get_pressed()
 
         self.__direction_up_keys = [
-            keys[pg.K_w],
-            keys[pg.K_UP]
+            keys[K_w],
+            keys[K_UP]
         ]
         self.__direction_down_keys = [
-            keys[pg.K_s],
-            keys[pg.K_DOWN]
+            keys[K_s],
+            keys[K_DOWN]
         ]
         self.__direction_left_keys = [
-            keys[pg.K_a],
-            keys[pg.K_LEFT]
+            keys[K_a],
+            keys[K_LEFT]
         ]
         self.__direction_right_keys = [
-            keys[pg.K_d],
-            keys[pg.K_RIGHT]
+            keys[K_d],
+            keys[K_RIGHT]
         ]
         self.__all_direction_keys = [
             *self.__direction_up_keys,

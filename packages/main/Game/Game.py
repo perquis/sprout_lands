@@ -1,6 +1,6 @@
 import os
 
-import pygame as pg
+from pygame import *
 
 from packages.main.Game.API import API
 from packages.models.Player.Player import Player
@@ -18,13 +18,13 @@ class Game(API):
         # toggle the fullscreen when the game is in production mode
         if os.getenv("MODE") == "production":
             self.toggle_fullscreen()
+            self.mouse_visible(False)
 
         # load default settings of the game
-        self.mouse_visible(False)
         self.load_music("village_vibe.mp3")
 
         # create the player group and add the player to it
-        players_group = pg.sprite.Group()
+        players_group = sprite.Group()
         players_group.add(self.player)
 
         while self.start:
