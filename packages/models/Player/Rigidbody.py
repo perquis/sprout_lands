@@ -21,7 +21,11 @@ class Rigidbody(ABC, pg.sprite.Sprite):
         x, y = device.get_display()
 
         # return the path to the spritesheet
-        self.__filename = "Basic Charakter Spritesheet/Basic_Charakter_Spritesheet"
+        keywords = ["Basic", "Charakter", "Spritesheet"]
+
+        dirname = " ".join(keywords)
+        filename = "_".join(keywords)
+        self.__filename = f"{dirname}/{filename}"
 
         # return default properties of the player
         self.__current_direction = Direction.DOWN
