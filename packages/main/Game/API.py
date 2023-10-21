@@ -17,7 +17,7 @@ class API(ABC):
         self.event_type = None
         self.event_key = None
         self.delta_time = 0.0
-        self.game_speed = 225
+        self.game_speed = 225.0
         self.FPS = 60.0
 
         # set the display and the refresh rate
@@ -67,7 +67,7 @@ class API(ABC):
         # update the delta time and clock tick rate
         # to keep the game running at the same speed
         # on all devices
-        self.delta_time = self.clock.tick(self.FPS) / 1000
+        self.delta_time = self.clock.tick(self.FPS) / 1000.0
 
         display.update()
 
