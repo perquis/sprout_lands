@@ -18,13 +18,12 @@ class API(ABC):
         self.event_key = None
         self.delta_time = 0.0
         self.game_speed = 225
-        self.FPS = 60
+        self.FPS = 60.0
 
         # set the display and the refresh rate
         # of the game
         device = models.Device()
-        self.display = device.get_display()
-        self.screen = pg.display.set_mode(self.display, pg.RESIZABLE)
+        self.screen = pg.display.set_mode((1280, 720), pg.RESIZABLE)
         self.refresh_rate = device.get_refresh_rate()
 
         # set the icon and the caption of the game

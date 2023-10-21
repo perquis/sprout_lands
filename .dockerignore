@@ -1,0 +1,20 @@
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Python
+poetry.lock
+
+__pycache__
+
+.pytest_cache
+.pylintrc
+.venv
+
+# Git files and Environments
+.gitattributes
+.gitignore
+.env
+
+# Other
+README.md

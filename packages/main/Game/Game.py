@@ -1,20 +1,25 @@
+import os
+
 import pygame as pg
 
 from packages.main.Game.API import API
-from packages.models import Player
+from packages.models.Player.Player import Player
 
 
 class Game(API):
     """🎮 The game. 🎮"""
 
-    def __init__(self, player: Player) -> None:
+    def __init__(self) -> None:
         super().__init__()
-        self.player = player
+        self.player = Player("PerQuis", speed=0.5)
 
     def run(self):
         """Run the game."""
+        # toggle the fullscreen when the game is in production mode
+        if os.getenv("MODE") == "production":
+            self.toggle_fullscreen()
+
         # load default settings of the game
-        self.toggle_fullscreen()
         self.mouse_visible(False)
         self.load_music("village_vibe.mp3")
 

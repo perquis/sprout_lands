@@ -3,7 +3,6 @@ from typing import List
 
 import pygame as pg
 
-from packages import models
 from packages.enums import Direction
 from packages.utils.images import find_images_by_direction as fibd
 
@@ -16,9 +15,8 @@ class Rigidbody(ABC, pg.sprite.Sprite):
 
     def __init__(self, speed: float) -> None:
         pg.sprite.Sprite.__init__(self)
-        device = models.Device()
 
-        x, y = device.get_display()
+        x, y = pg.display.get_window_size()
 
         # return the path to the spritesheet
         keywords = ["Basic", "Charakter", "Spritesheet"]

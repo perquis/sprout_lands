@@ -1,16 +1,13 @@
 import pygame as pg
+from dotenv import load_dotenv
 
 from packages.main import Game
-from packages.models import Player
 
 if __name__ == '__main__':
     pg.init()
+    load_dotenv()
 
-    # create the player and the game
-    player = Player("PerQuis", speed=0.5)
-    game = Game(player)
-
-    # run the game
+    game = Game()
     game.run()
 
     pg.quit()
