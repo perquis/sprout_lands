@@ -1,1 +1,2 @@
+from .get_assets_path import get_assets_path
 from .get_images_by_direction import get_images_by_direction

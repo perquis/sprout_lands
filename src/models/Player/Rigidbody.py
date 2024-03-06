@@ -5,8 +5,11 @@ from pygame import *
 from pygame.sprite import Sprite
 
 from src.enums import Direction
+from src.router import Router
 
 from ...utils.get_images_by_direction import get_images_by_direction as gibd
+
+router = Router()
 
 
 class Rigidbody(ABC, Sprite):
@@ -25,7 +28,7 @@ class Rigidbody(ABC, Sprite):
 
         dirname = " ".join(keywords)
         filename = "_".join(keywords)
-        self.__filename = f"{dirname}/{filename}"
+        self.__filename = f"{router.characters}/{dirname}/{filename}"
 
         # return default properties of the player
         self.__current_direction = Direction.DOWN

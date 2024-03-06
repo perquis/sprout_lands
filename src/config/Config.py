@@ -3,9 +3,11 @@ from abc import ABC
 
 from pygame import *
 
-from src import resources
+from src.router import Router
 
 from .Device import Device
+
+router = Router()
 
 
 class Config(ABC):
@@ -35,8 +37,8 @@ class Config(ABC):
     @property
     def icon(self):
         """Return the icon of the game."""
-        return resources.character(
-            "Basic Charakter Spritesheet/Basic_Charakter_Spritesheet_DOWN_1.png"
+        return image.load(
+            f"{router.characters}/Basic Charakter Spritesheet/Basic_Charakter_Spritesheet_DOWN_1.png"
         )
 
     @property
@@ -96,9 +98,13 @@ class Config(ABC):
         """Show or hide the mouse."""
         mouse.set_visible(visible)
 
-    def load_music(self, music: str):
+    def load_music(self, filename: str):
         """Load the music."""
-        resources.music(music)
+        mixer.init()
+        music = mixer.music
+
+        music.load(f"{router.music}/{filename}")
+        music.play()
 
     def toggle_fullscreen(self):
         """Toggle fullscreen mode."""
