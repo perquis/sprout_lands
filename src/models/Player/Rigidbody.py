@@ -7,10 +7,6 @@ from pygame.sprite import Sprite
 from src.enums import Direction
 from src.router import Router
 
-from ...utils.get_images_by_direction import get_images_by_direction as gibd
-
-router = Router()
-
 
 class Rigidbody(ABC, Sprite):
     """
@@ -21,6 +17,7 @@ class Rigidbody(ABC, Sprite):
     def __init__(self, speed: float) -> None:
         Sprite.__init__(self)
 
+        router = Router()
         x, y = display.get_window_size()
 
         # return the path to the spritesheet
@@ -28,7 +25,7 @@ class Rigidbody(ABC, Sprite):
 
         dirname = " ".join(keywords)
         filename = "_".join(keywords)
-        self.__filename = f"{router.characters}/{dirname}/{filename}"
+        self.__filename = f"{router.sprites}/{dirname}/{filename}"
 
         # return default properties of the player
         self.__current_direction = Direction.DOWN
@@ -45,20 +42,24 @@ class Rigidbody(ABC, Sprite):
 
         # return a list of images by direction
         # (up, down, left, right) based on idleness
-        self.__sprites_idle_up = gibd(self.__filename, Direction.UP)
-        self.__sprites_idle_down = gibd(self.__filename, Direction.DOWN)
-        self.__sprites_idle_left = gibd(self.__filename, Direction.LEFT)
-        self.__sprites_idle_right = gibd(self.__filename, Direction.RIGHT)
+        self.__sprites_idle_up = self.load_sprites(
+            self.__filename, Direction.UP)
+        self.__sprites_idle_down = self.load_sprites(
+            self.__filename, Direction.DOWN)
+        self.__sprites_idle_left = self.load_sprites(
+            self.__filename, Direction.LEFT)
+        self.__sprites_idle_right = self.load_sprites(
+            self.__filename, Direction.RIGHT)
 
         # return a list of images by direction
         # (up, down, left, right) based on movement
-        self.__sprites_move_up = gibd(
+        self.__sprites_move_up = self.load_sprites(
             self.__filename, Direction.UP, range(3, 5))
-        self.__sprites_move_down = gibd(
+        self.__sprites_move_down = self.load_sprites(
             self.__filename, Direction.DOWN, range(3, 5))
-        self.__sprites_move_left = gibd(
+        self.__sprites_move_left = self.load_sprites(
             self.__filename, Direction.LEFT, range(3, 5))
-        self.__sprites_move_right = gibd(
+        self.__sprites_move_right = self.load_sprites(
             self.__filename, Direction.RIGHT, range(3, 5))
 
         # return a list of keys that are responsible
@@ -85,6 +86,12 @@ class Rigidbody(ABC, Sprite):
 
     def plow_field(self, is_plow_field: bool) -> None:
         self.__is_plow_field = is_plow_field
+
+    def load_sprites(self, filename: str, direction: Direction, range=range(1, 3)):
+        return [
+            image.load(f"{filename}_{direction}_{index}.png")
+            for index in range
+        ]
 
     def set_current_image(self, movement, idleness) -> None:
         """Set the current image of the player."""

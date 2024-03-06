@@ -38,7 +38,7 @@ class Config(ABC):
     def icon(self):
         """Return the icon of the game."""
         return image.load(
-            f"{router.characters}/Basic Charakter Spritesheet/Basic_Charakter_Spritesheet_DOWN_1.png"
+            f"{router.sprites}/Basic Charakter Spritesheet/Basic_Charakter_Spritesheet_DOWN_1.png"
         )
 
     @property
