@@ -2,8 +2,8 @@ import os
 
 from pygame import *
 
-from packages.Engine import Engine
-from packages.models.Player.Player import Player
+from src.packages.Engine import Engine
+from src.packages.models.Player.Player import Player
 
 
 class Game(Engine):

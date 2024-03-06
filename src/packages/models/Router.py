@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 # root levet directory for assets which are necessary.
-root: str = "assets"
+root: str = "src/assets"
 
 
 @dataclass

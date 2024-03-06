@@ -1,7 +1,7 @@
 import pygame as pg
 from dotenv import load_dotenv
 
-from packages.Game import Game
+from src.packages.Game import Game
 
 if __name__ == '__main__':
     pg.init()

@@ -3,7 +3,7 @@ from abc import ABC
 
 from pygame import *
 
-from packages import models, resources
+from src.packages import models, resources
 
 
 class Engine(ABC):

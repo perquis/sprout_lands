@@ -1,8 +1,8 @@
 
 from pygame.sprite import Sprite
 
-from packages.enums import *
-from packages.models.Player import *
+from src.packages.enums import *
+from src.packages.models.Player import *
 
 
 class Player(Level, Account, Details, Equipment, Rigidbody):

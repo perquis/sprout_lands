@@ -1,6 +1,6 @@
 from pygame import image
 
-from packages.models.Router import Router
+from src.packages.models.Router import Router
 
 router = Router()
 

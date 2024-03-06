@@ -1,5 +1,5 @@
-from packages.enums.Direction import Direction
-from packages.utils.images import find_images_by_direction as fibd
+from src.packages.enums.Direction import Direction
+from src.packages.utils.images import find_images_by_direction as fibd
 
 
 def tests_getting_sprites():
