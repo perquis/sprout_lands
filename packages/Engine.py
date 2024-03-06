@@ -6,7 +6,7 @@ from pygame import *
 from packages import models, resources
 
 
-class API(ABC):
+class Engine(ABC):
     """The API for the game."""
 
     def __init__(self) -> None:
