@@ -1,6 +1,6 @@
 from pygame import mixer
 
-from src.models.Router import Router
+from ..router.Router import Router
 
 router = Router()
 

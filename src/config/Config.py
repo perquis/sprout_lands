@@ -3,7 +3,9 @@ from abc import ABC
 
 from pygame import *
 
-from src import models, resources
+from src import resources
+
+from .Device import Device
 
 
 class Config(ABC):
@@ -22,7 +24,7 @@ class Config(ABC):
 
         # set the display and the refresh rate
         # of the game
-        device = models.Device()
+        device = Device()
         self.screen = display.set_mode((1280, 720), RESIZABLE)
         self.refresh_rate = device.get_refresh_rate()
 

@@ -2,8 +2,8 @@ import os
 
 from pygame import *
 
-from .config.Engine import Config
-from .models.Player.Player import Player
+from .config import Config
+from .models import Player
 
 
 class Game(Config):

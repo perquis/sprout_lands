@@ -5,7 +5,8 @@ from pygame import *
 from pygame.sprite import Sprite
 
 from src.enums import Direction
-from src.utils.images import find_images_by_direction as fibd
+
+from ...utils.get_images_by_direction import get_images_by_direction as gibd
 
 
 class Rigidbody(ABC, Sprite):
@@ -41,20 +42,20 @@ class Rigidbody(ABC, Sprite):
 
         # return a list of images by direction
         # (up, down, left, right) based on idleness
-        self.__sprites_idle_up = fibd(self.__filename, Direction.UP)
-        self.__sprites_idle_down = fibd(self.__filename, Direction.DOWN)
-        self.__sprites_idle_left = fibd(self.__filename, Direction.LEFT)
-        self.__sprites_idle_right = fibd(self.__filename, Direction.RIGHT)
+        self.__sprites_idle_up = gibd(self.__filename, Direction.UP)
+        self.__sprites_idle_down = gibd(self.__filename, Direction.DOWN)
+        self.__sprites_idle_left = gibd(self.__filename, Direction.LEFT)
+        self.__sprites_idle_right = gibd(self.__filename, Direction.RIGHT)
 
         # return a list of images by direction
         # (up, down, left, right) based on movement
-        self.__sprites_move_up = fibd(
+        self.__sprites_move_up = gibd(
             self.__filename, Direction.UP, range(3, 5))
-        self.__sprites_move_down = fibd(
+        self.__sprites_move_down = gibd(
             self.__filename, Direction.DOWN, range(3, 5))
-        self.__sprites_move_left = fibd(
+        self.__sprites_move_left = gibd(
             self.__filename, Direction.LEFT, range(3, 5))
-        self.__sprites_move_right = fibd(
+        self.__sprites_move_right = gibd(
             self.__filename, Direction.RIGHT, range(3, 5))
 
         # return a list of keys that are responsible

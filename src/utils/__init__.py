@@ -1,1 +1,1 @@
-from .images import find_images_by_direction
+from .get_images_by_direction import get_images_by_direction

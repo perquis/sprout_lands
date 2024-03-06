@@ -1,7 +1,10 @@
+import os
 from dataclasses import dataclass
 
+from ..utils.get_assets_path import get_assets_path
+
 # root levet directory for assets which are necessary.
-root: str = "src/assets"
+root: str = get_assets_path(os.getcwd())
 
 
 @dataclass
