@@ -3,11 +3,11 @@ from abc import ABC
 
 from pygame import *
 
-from src.packages import models, resources
+from src import models, resources
 
 
-class Engine(ABC):
-    """The API for the game."""
+class Config(ABC):
+    """The Config for the game."""
 
     def __init__(self) -> None:
         self.clock = time.Clock()

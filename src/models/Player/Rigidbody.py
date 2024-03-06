@@ -4,8 +4,8 @@ from typing import List
 from pygame import *
 from pygame.sprite import Sprite
 
-from src.packages.enums import Direction
-from src.packages.utils.images import find_images_by_direction as fibd
+from src.enums import Direction
+from src.utils.images import find_images_by_direction as fibd
 
 
 class Rigidbody(ABC, Sprite):

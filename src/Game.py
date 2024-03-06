@@ -2,11 +2,11 @@ import os
 
 from pygame import *
 
-from src.packages.Engine import Engine
-from src.packages.models.Player.Player import Player
+from .config.Engine import Config
+from .models.Player.Player import Player
 
 
-class Game(Engine):
+class Game(Config):
     """🎮 The game. 🎮"""
 
     def __init__(self) -> None:

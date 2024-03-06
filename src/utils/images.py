@@ -1,5 +1,5 @@
-from src.packages import resources
-from src.packages.enums import Direction
+from src import resources
+from src.enums import Direction
 
 
 def find_images_by_direction(filename: str, direction: Direction, range=range(1, 3)):
