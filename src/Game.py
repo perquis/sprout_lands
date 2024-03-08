@@ -38,7 +38,6 @@ class Game(Config):
             # after drawing the sprites to the screen
             # based on the API model
             self.update()
-            self.handle_events()
 
             # fill the screen with black color to avoid
             # the effect of "traces" of the player

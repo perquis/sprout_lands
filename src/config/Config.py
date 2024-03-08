@@ -67,31 +67,23 @@ class Config(ABC):
             if e.type == KEYUP:
                 self.event_key = e.key
 
+            if self.event_type == QUIT:
+                self.exit()
+
+            if self.event_type == KEYUP and self.event_key == K_F11:
+                self.mouse_visible(self.is_fullscreen)
+                self.toggle_fullscreen()
+
+            if self.event_key == K_ESCAPE:
+                self.exit()
+                sys.exit()
+
         # update the delta time and clock tick rate
         # to keep the game running at the same speed
         # on all devices
         self.delta_time = self.clock.tick(self.FPS) / 1000.0
 
         display.update()
-
-    def handle_events(self):
-        """
-        Handle the events:
-
-        - exit the game if the user clicks the close button
-        - toggle fullscreen mode if the user presses the F11 key
-        - exit the game if the user presses the ESC key
-        """
-        if self.event_type == QUIT:
-            self.exit()
-
-        if self.event_type == KEYUP and self.event_key == K_F11:
-            self.mouse_visible(self.is_fullscreen)
-            self.toggle_fullscreen()
-
-        if self.event_key == K_ESCAPE:
-            self.exit()
-            sys.exit()
 
     def mouse_visible(self, visible: bool):
         """Show or hide the mouse."""
