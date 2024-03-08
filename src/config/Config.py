@@ -2,6 +2,7 @@ import sys
 from abc import ABC
 
 from pygame import *
+from pygame.display import *
 
 from src.resources import Device
 from src.router import Router
@@ -33,26 +34,6 @@ class Config(ABC):
         display.set_icon(self.icon)
         display.set_caption("Sprout Lands")
 
-    @property
-    def icon(self):
-        """Return the icon of the game."""
-        return image.load(
-            f"{router.sprites}/Basic Charakter Spritesheet/Basic_Charakter_Spritesheet_DOWN_1.png"
-        )
-
-    @property
-    def is_fullscreen(self) -> bool:
-        """
-        Return True if the game is in 
-        fullscreen mode, False otherwise.
-        """
-        return display.is_fullscreen()
-
-    @property
-    def diff(self):
-        """Return the speed multiplied by the delta time."""
-        return self.game_speed * self.delta_time
-
     def update(self):
         """
         Update the game:
@@ -71,11 +52,11 @@ class Config(ABC):
                 self.exit()
 
             if self.event_type == KEYUP and self.event_key == K_F11:
-                self.mouse_visible(self.is_fullscreen)
-                self.toggle_fullscreen()
+                mouse.set_visible(is_fullscreen())
+                toggle_fullscreen()
 
             if self.event_key == K_ESCAPE:
-                self.exit()
+                self.start = False
                 sys.exit()
 
         # update the delta time and clock tick rate
@@ -85,10 +66,6 @@ class Config(ABC):
 
         display.update()
 
-    def mouse_visible(self, visible: bool):
-        """Show or hide the mouse."""
-        mouse.set_visible(visible)
-
     def load_music(self, filename: str):
         """Load the music."""
         mixer.init()
@@ -97,11 +74,14 @@ class Config(ABC):
         music.load(f"{router.music}/{filename}")
         music.play()
 
-    def toggle_fullscreen(self):
-        """Toggle fullscreen mode."""
-        display.toggle_fullscreen()
+    @property
+    def icon(self):
+        """Return the icon of the game."""
+        return image.load(
+            f"{router.sprites}/Basic Charakter Spritesheet/Basic_Charakter_Spritesheet_DOWN_1.png"
+        )
 
-    def exit(self):
-        """Exit the game."""
-        self.start = False
-        sys.exit()
+    @property
+    def diff(self):
+        """Return the speed multiplied by the delta time."""
+        return self.game_speed * self.delta_time
