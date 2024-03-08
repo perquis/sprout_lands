@@ -1,3 +1,4 @@
+import os
 import sys
 from abc import ABC
 
@@ -5,7 +6,6 @@ from pygame import *
 from pygame.display import *
 
 from src.resources import Device
-from src.router import Router
 
 
 class Config(ABC):
@@ -27,9 +27,6 @@ class Config(ABC):
         self.device = Device()
         self.screen = display.set_mode((1280, 720), RESIZABLE)
         self.refresh_rate = self.device.get_refresh_rate()
-
-        # set the router of the game
-        self.router = Router()
 
         # set the icon and the caption of the game
         set_icon(self.icon)
@@ -72,12 +69,13 @@ class Config(ABC):
         mixer.init()
         music = mixer.music
 
-        music.load(f"{self.router.music}/{filename}")
+        music.load(
+            f"{os.path.join(os.getcwd(), 'src', 'assets', 'music')}/{filename}")
         music.play()
 
     @property
     def icon(self):
-        return image.load(f"{self.router.icons}/icon.png")
+        return image.load(f"{os.path.join(os.getcwd(), 'src', 'assets', 'icons')}/icon.png")
 
     @property
     def diff(self):

@@ -1,3 +1,4 @@
+import os
 from abc import ABC
 from typing import List
 
@@ -5,7 +6,6 @@ from pygame import *
 from pygame.sprite import Sprite
 
 from src.enums import Direction
-from src.router import Router
 
 
 class Rigidbody(ABC, Sprite):
@@ -17,7 +17,6 @@ class Rigidbody(ABC, Sprite):
     def __init__(self, speed: float) -> None:
         Sprite.__init__(self)
 
-        router = Router()
         x, y = display.get_window_size()
 
         # return the path to the spritesheet
@@ -25,7 +24,7 @@ class Rigidbody(ABC, Sprite):
 
         dirname = " ".join(keywords)
         filename = "_".join(keywords)
-        self.__filename = f"{router.sprites}/{dirname}/{filename}"
+        self.__filename = f"{os.path.join(os.getcwd(), 'src', 'assets', 'packages', 'sprites_basic_pack', 'Characters')}/{dirname}/{filename}"
 
         # return default properties of the player
         self.__current_direction = Direction.DOWN
