@@ -3,9 +3,8 @@ from abc import ABC
 
 from pygame import *
 
+from src.resources import Device
 from src.router import Router
-
-from .Device import Device
 
 router = Router()
 
