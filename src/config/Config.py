@@ -7,8 +7,6 @@ from pygame.display import *
 from src.resources import Device
 from src.router import Router
 
-router = Router()
-
 
 class Config(ABC):
     """The Config for the game."""
@@ -26,13 +24,16 @@ class Config(ABC):
 
         # set the display and the refresh rate
         # of the game
-        device = Device()
+        self.device = Device()
         self.screen = display.set_mode((1280, 720), RESIZABLE)
-        self.refresh_rate = device.get_refresh_rate()
+        self.refresh_rate = self.device.get_refresh_rate()
+
+        # set the router of the game
+        self.router = Router()
 
         # set the icon and the caption of the game
-        display.set_icon(self.icon)
-        display.set_caption("Sprout Lands")
+        set_icon(self.icon)
+        set_caption("Sprout Lands")
 
     def update(self):
         """
@@ -71,17 +72,13 @@ class Config(ABC):
         mixer.init()
         music = mixer.music
 
-        music.load(f"{router.music}/{filename}")
+        music.load(f"{self.router.music}/{filename}")
         music.play()
 
     @property
     def icon(self):
-        """Return the icon of the game."""
-        return image.load(
-            f"{router.sprites}/Basic Charakter Spritesheet/Basic_Charakter_Spritesheet_DOWN_1.png"
-        )
+        return image.load(f"{self.router.icons}/icon.png")
 
     @property
     def diff(self):
-        """Return the speed multiplied by the delta time."""
         return self.game_speed * self.delta_time
