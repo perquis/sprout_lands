@@ -2,13 +2,13 @@
 
 This is an adorable 16-bit pixel art game that **immerses players in the enchanting world of rural life**. In this game, you step into the shoes of a small farm owner tasked with restoring and managing their farm to success. Your domain includes fields, meadows, and spaces for farm buildings.
 
-<img src="./assets/images/banner.gif" width="100%" alt="Sprout Lands" />
+![img](https://github.com/perquis/sprout_lands/assets/71089523/2e239534-3ddc-40eb-ab6a-280136af1d1b)
 
 ## 🎮 Description
 
 Your primary goal will be to cultivate crops, raise animals, and develop your farm. The game's asset pack features charming animals like chickens, cows, sheep, and many more, which you'll need to care for. You'll also **need to tend to your crops, harvest yields, and trade them to earn money to expand your farm**.
 
-<img src="./assets/images/plow_fields.gif" width="100%" alt="Sprout Lands" />
+![plow_fields](https://github.com/perquis/sprout_lands/assets/71089523/1e156c35-750f-4471-975a-286b92a95387)
 
 The game features a soft, pastel color palette that gives it a pleasant and serene character. You can **explore the surrounding areas, gather resources, and build relationships with other villagers**. Your choices will impact the development of your farm and your relationships with the community.
 
