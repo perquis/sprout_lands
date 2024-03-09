@@ -9,8 +9,6 @@ from src.resources import Device
 
 
 class Config(ABC):
-    """The Config for the game."""
-
     def __init__(self) -> None:
         self.clock = time.Clock()
 
@@ -25,7 +23,7 @@ class Config(ABC):
         # set the display and the refresh rate
         # of the game
         self.device = Device()
-        self.screen = display.set_mode((1280, 720), RESIZABLE)
+        self.screen = display.set_mode(self.device.get_display(), RESIZABLE)
         self.refresh_rate = self.device.get_refresh_rate()
 
         # set the icon and the caption of the game
@@ -33,13 +31,8 @@ class Config(ABC):
         set_caption("Sprout Lands")
 
     def update(self):
-        """
-        Update the game:
+        print(self.device.get_display())
 
-        - get the events
-        - update the delta time and clock tick rate
-        - update the display
-        """
         for e in event.get():
             self.event_type = e.type
 
@@ -48,10 +41,6 @@ class Config(ABC):
 
             if self.event_type == QUIT:
                 self.exit()
-
-            if self.event_type == KEYUP and self.event_key == K_F11:
-                mouse.set_visible(is_fullscreen())
-                toggle_fullscreen()
 
             if self.event_key == K_ESCAPE:
                 self.start = False
@@ -65,7 +54,6 @@ class Config(ABC):
         display.update()
 
     def load_music(self, filename: str):
-        """Load the music."""
         mixer.init()
         music = mixer.music
 

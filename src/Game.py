@@ -14,10 +14,8 @@ class Game(Config):
 
     def run(self):
         """Run the game."""
-        # toggle the fullscreen when the game is in production mode
-        if os.getenv("MODE") == "production":
-            self.toggle_fullscreen()
-            self.mouse_visible(False)
+        mouse.set_visible(False)
+        display.toggle_fullscreen()
 
         # load default settings of the game
         self.load_music("village_vibe.mp3")
