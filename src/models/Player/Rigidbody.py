@@ -9,11 +9,6 @@ from src.enums import Direction
 
 
 class Rigidbody(ABC, Sprite):
-    """
-    Rigidbody is a class that is responsible for
-    the movement of the player.
-    """
-
     def __init__(self, speed: float) -> None:
         Sprite.__init__(self)
 
@@ -21,10 +16,12 @@ class Rigidbody(ABC, Sprite):
 
         # return the path to the spritesheet
         keywords = ["Basic", "Charakter", "Spritesheet"]
-
         dirname = " ".join(keywords)
         filename = "_".join(keywords)
-        self.__filename = f"{os.path.join(os.getcwd(), 'src', 'assets', 'packages', 'sprites_basic_pack', 'Characters')}/{dirname}/{filename}"
+        CHARACTER_PATH = os.path.join(
+            os.getcwd(), 'src', 'assets', 'packages', 'sprites_basic_pack', 'Characters')
+
+        self.__filename = f"{CHARACTER_PATH}/{dirname}/{filename}"
 
         # return default properties of the player
         self.__current_direction = Direction.DOWN
@@ -93,16 +90,9 @@ class Rigidbody(ABC, Sprite):
         ]
 
     def set_current_image(self, movement, idleness) -> None:
-        """Set the current image of the player."""
         self.image = movement if self.__is_move else idleness
 
     def update(self, diff: float) -> None:
-        """
-        Update the player:
-        - handle the animation of the player based on the current sprite and direction
-        - handle the movement of the player based on the pressed keys
-        - handle the pressed keys of the player based on the pressed keys
-        """
         self.animation()
         self.movement(diff)
         self.get_pressed_keys()
@@ -144,7 +134,6 @@ class Rigidbody(ABC, Sprite):
                 )
 
     def movement(self, diff: float) -> None:
-        """Handles the movement of the player."""
         # handle the player idle animation
         if any(self.__direction_up_keys):
             self.__current_direction = Direction.UP
@@ -166,7 +155,6 @@ class Rigidbody(ABC, Sprite):
             self.toggle_move(False)
 
     def get_pressed_keys(self):
-        """Handle the pressed keys of the player."""
         keys = key.get_pressed()
 
         self.__direction_up_keys = [
