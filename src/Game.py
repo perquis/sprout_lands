@@ -2,8 +2,7 @@ import os
 
 from pygame import *
 
-from .config import Config
-from .models import Player
+from .models import Config, Player
 
 
 class Game(Config):

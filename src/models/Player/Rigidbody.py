@@ -19,7 +19,7 @@ class Rigidbody(ABC, Sprite):
         dirname = " ".join(keywords)
         filename = "_".join(keywords)
         CHARACTER_PATH = os.path.join(
-            os.getcwd(), 'src', 'assets', 'packages', 'sprites_basic_pack', 'Characters')
+            os.getcwd(), 'assets', 'packages', 'sprites_basic_pack', 'Characters')
 
         self.__filename = f"{CHARACTER_PATH}/{dirname}/{filename}"
 

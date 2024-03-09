@@ -70,12 +70,12 @@ class Config(ABC):
         music = mixer.music
 
         music.load(
-            f"{os.path.join(os.getcwd(), 'src', 'assets', 'music')}/{filename}")
+            f"{os.path.join(os.getcwd(), 'assets', 'music')}/{filename}")
         music.play()
 
     @property
     def icon(self):
-        return image.load(f"{os.path.join(os.getcwd(), 'src', 'assets', 'icons')}/icon.png")
+        return image.load(f"{os.path.join(os.getcwd(), 'assets', 'icons')}/icon.png")
 
     @property
     def diff(self):
