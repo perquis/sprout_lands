@@ -4,13 +4,15 @@ from abc import ABC
 
 from pygame import *
 from pygame.display import *
+from pygame.time import *
 
 from src.resources import Device
 
 
 class Config(ABC):
     def __init__(self) -> None:
-        self.clock = time.Clock()
+        self.device = Device()
+        self.clock = Clock()
 
         # initialize core properties of the game
         self.start = True
@@ -18,11 +20,10 @@ class Config(ABC):
         self.event_key = None
         self.delta_time = 0.0
         self.game_speed = 225.0
-        self.FPS = 60.0
+        self.FPS = self.device.get_refresh_rate()
 
         # set the display and the refresh rate
         # of the game
-        self.device = Device()
         self.screen = display.set_mode(self.device.get_display(), RESIZABLE)
         self.refresh_rate = self.device.get_refresh_rate()
 
