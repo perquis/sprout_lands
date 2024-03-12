@@ -1,19 +1,14 @@
-import os
-
 from pygame import *
 
 from .models import Config, Player
 
 
 class Game(Config):
-    """🎮 The game. 🎮"""
-
     def __init__(self) -> None:
         super().__init__()
         self.player = Player("PerQuis", speed=0.5)
 
     def run(self):
-        """Run the game."""
         mouse.set_visible(False)
         display.toggle_fullscreen()
 

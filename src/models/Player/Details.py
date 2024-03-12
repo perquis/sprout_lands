@@ -9,7 +9,4 @@ class Details(ABC):
         self.updated_at = None
 
     def add_day(self):
-        """
-        Add one day to days.
-        """
         self.__days += 1

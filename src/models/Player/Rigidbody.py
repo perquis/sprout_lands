@@ -73,13 +73,13 @@ class Rigidbody(ABC, Sprite):
     def toggle_move(self, is_move: bool) -> None:
         self.__is_move = is_move
 
-    def water_platns(self, is_water_plants: bool) -> None:
+    def toggle_water_platns(self, is_water_plants: bool) -> None:
         self.__is_water_plants = is_water_plants
 
-    def chop_tree(self, is_chop_tree: bool) -> None:
+    def toggle_chop_tree(self, is_chop_tree: bool) -> None:
         self.__is_chop_tree = is_chop_tree
 
-    def plow_field(self, is_plow_field: bool) -> None:
+    def toggle_plow_field(self, is_plow_field: bool) -> None:
         self.__is_plow_field = is_plow_field
 
     def load_sprites(self, filename: str, direction: Direction, range=range(1, 3)):
@@ -92,12 +92,15 @@ class Rigidbody(ABC, Sprite):
         self.image = movement if self.__is_move else idleness
 
     def update(self, diff: float) -> None:
-        self.animation()
-        self.movement(diff)
         self.get_pressed_keys()
+        self.animation()
+
+        self.movement(diff)
+        self.water_plants()
+        self.plow_field()
+        self.chop_tree()
 
     def animation(self) -> None:
-        """Handles the animation of the player based on the current sprite."""
         self.rect.center = self.__player_pos
         self.__current_sprite += self.__speed * 0.1
 
@@ -131,6 +134,30 @@ class Rigidbody(ABC, Sprite):
                     self.__sprites_move_right[n],
                     self.__sprites_idle_right[n]
                 )
+
+    def water_plants(self) -> None:
+        keys = key.get_pressed()
+
+        if keys[K_SPACE]:
+            self.toggle_water_platns(True)
+        else:
+            self.toggle_water_platns(False)
+
+    def chop_tree(self) -> None:
+        keys = key.get_pressed()
+
+        if keys[K_SPACE]:
+            self.toggle_chop_tree(True)
+        else:
+            self.toggle_chop_tree(False)
+
+    def plow_field(self) -> None:
+        keys = key.get_pressed()
+
+        if keys[K_SPACE]:
+            self.toggle_plow_field(True)
+        else:
+            self.toggle_plow_field(False)
 
     def movement(self, diff: float) -> None:
         # handle the player idle animation
