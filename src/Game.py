@@ -18,7 +18,7 @@ class Game(Config):
         display.toggle_fullscreen()
 
         # load default settings of the game
-        self.load_music("village_vibe.mp3")
+        self.load_music()
 
         # create the player group and add the player to it
         players_group = sprite.Group()
@@ -28,8 +28,8 @@ class Game(Config):
             # update the sprites and draw them to the screen
             # based on the Player model and his properties
             # (speed, direction, etc.)
-            players_group.update(diff=self.diff)
-            players_group.draw(surface=self.screen)
+            players_group.update(self.diff)
+            players_group.draw(self.screen)
 
             # update the game and handle the events
             # after drawing the sprites to the screen
@@ -39,4 +39,4 @@ class Game(Config):
             # fill the screen with black color to avoid
             # the effect of "traces" of the player
             # on the screen after movement (animation)
-            self.screen.fill("black")
+            self.screen.fill("cyan")

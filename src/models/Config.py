@@ -32,8 +32,6 @@ class Config(ABC):
         set_caption("Sprout Lands")
 
     def update(self):
-        print(self.device.get_display())
-
         for e in event.get():
             self.event_type = e.type
 
@@ -54,17 +52,16 @@ class Config(ABC):
 
         display.update()
 
-    def load_music(self, filename: str):
+    def load_music(self):
         mixer.init()
         music = mixer.music
 
-        music.load(
-            f"{os.path.join(os.getcwd(), 'assets', 'music')}/{filename}")
+        music.load("assets/music/village_vibe.mp3")
         music.play()
 
     @property
     def icon(self):
-        return image.load(f"{os.path.join(os.getcwd(), 'assets', 'icons')}/icon.png")
+        return image.load("assets/icons/icon.png")
 
     @property
     def diff(self):
